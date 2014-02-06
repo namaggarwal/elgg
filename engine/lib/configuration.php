@@ -190,7 +190,8 @@
 					$CONFIG->viewpath_cache_enabled = 1;
 				}
 				if (isset($CONFIG->site) && ($CONFIG->site instanceof ElggSite)) {
-					$CONFIG->wwwroot = $CONFIG->site->url;
+					//Line below is causing fucking lot issues
+					//$CONFIG->wwwroot = $CONFIG->site->url;
 					$CONFIG->sitename = $CONFIG->site->name;
 					$CONFIG->sitedescription = $CONFIG->site->description;
 					$CONFIG->siteemail = $CONFIG->site->email;
