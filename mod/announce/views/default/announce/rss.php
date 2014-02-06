@@ -18,7 +18,7 @@
 			$html .= "<title>".$det["TITLE"]."</title>";
 			$html .= "<link>".$det["LINK"]."</link>";
 			$html .= "<guid>".$det["LINK"]."</guid>";
-			$html .= "<pubDate>".date("D, d M Y H:i:s GMT",$det["DATE"])."</pubDate>";
+			$html .= "<pubDate>".date("D, d M Y H:i:s \G\M\T",$det["DATE"])."</pubDate>";
 			$html .= "<description>".$base_url.$det["DESC"]."</description>";
 			$html .= "</item>";
 
