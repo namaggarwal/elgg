@@ -24,10 +24,10 @@
 	 */
 		
 		// Database username
-			$CONFIG->dbuser = 'root';
+			$CONFIG->dbuser = 'naman';
 			
 		// Database password
-			$CONFIG->dbpass = 'root';
+			$CONFIG->dbpass = 'IAMTHEBEST';
 
 		// Database name
 			$CONFIG->dbname = 'elgg';
@@ -125,5 +125,7 @@
 	 
 	 // URL
 	    $CONFIG->url = "";
+
+	    //$CONFIG->debug = true; 
 			
 ?>
