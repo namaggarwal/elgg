@@ -32,7 +32,12 @@
 				$user->salt = generate_random_cleartext_password(); // Reset the salt
 				$user->password = generate_user_password($user, $password);
 				if ($user->save())
+				{
 					system_message(elgg_echo('user:password:success'));
+				$email = sprintf(elgg_echo('Your Password has been updated successfully'), $user->name, $password);	
+				
+				return notify_user($user->guid, $CONFIG->site->guid, elgg_echo('email:resetpassword:subject'), $email, NULL, 'email');
+				}	
 				else
 					register_error(elgg_echo('user:password:fail'));
 			}
