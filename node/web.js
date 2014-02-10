@@ -11,7 +11,7 @@ function handler(req, res) {
 	if(req.url!="/favicon.ico"){
 		//increment the counter
 		countVisit++;
-	}
+	}  
 	//Start creating response
     res.writeHead(200, {'Content-Type': 'text/html'});
     //Get the page html
@@ -42,14 +42,54 @@ function onChatConnection(socket) {
   	console.log("GUID Set");
   });
 
-  socket.on("outgoingcall",function(data){  	
+  socket.on("outgoingcall",function(data){
+  	console.log("Incoming call received");
+  	var personoffline = true;
   	 for(var i in chats["sockets"]){
   	 	if(chats["sockets"][i]["guid"] == data.guid){
-  	 		chats["sockets"][i].emit("incomingcall",{name:data.name,link:data.link});
+  	 		console.log("Sending Response");
+  	 		chats["sockets"][i].emit("incomingcall",{name:data.name,link:data.link,guid:data.friendid});
+  	 		personoffline = false;
+  	 		break;
+  	 	}
+  	 }
+
+  	 if(personoffline){
+  	 	//Do something here
+  	 }
+
+  });
+
+  socket.on("callaccepted",function(data){
+  	console.log("Call Accept received");
+  	 for(var i in chats["sockets"]){
+  	 	if(chats["sockets"][i]["guid"] == data.friendid){
+  	 		console.log("Sending call accept response");
+  	 		chats["sockets"][i].emit("acceptcall");
+  	 		break;
   	 	}
   	 }
 
   });
+
+  socket.on("callrejected",function(data){  	
+  	 for(var i in chats["sockets"]){
+  	 	if(chats["sockets"][i]["guid"] == data.friendid){
+  	 		chats["sockets"][i].emit("rejectcall");
+  	 	}
+  	 }
+
+  });
+
+  socket.on("stopcall",function(data){    
+     for(var i in chats["sockets"]){
+      if(chats["sockets"][i]["guid"] == data.guid){
+        chats["sockets"][i].emit("stopcall",{friendid:data.friendid});
+      }
+     }
+
+  });
+
 }
 
 
@@ -80,6 +120,6 @@ var getPageHtml = function(){
 
 	return html;
 };
-server.listen(1337, 'localhost'); // Http server at port 1337 on localhost
+server.listen(1337, '0.0.0.0'); // Http server at port 1337 on localhost
 //Log that server is running
 console.log('Server running at http://127.0.0.1:1337/');
