@@ -1,9 +1,9 @@
 <?php
 	gatekeeper();
 
-	$guid = get_loggedin_user()->guid;	
+	$guid = hash('md5',get_loggedin_user()->guid);
 	$name = get_loggedin_user()->name;	
-	$room_name   = "elgg_".$myguid = (int) get_loggedin_user()->guid.time();
+	$room_name   = "elgg_".$guid.time();
 	$link  = $CONFIG->url."pg/voice/join/".$room_name;	
 	$html  =  '';
 	$html .= '<div id="voice_input_cont">';
@@ -16,7 +16,7 @@
 	foreach($vars['friends'] as $friend){ 
 		//populate the send to box with a user's friends
 		//$html .= '<div value="'.$friend->guid.'">' . $friend->name . '</div>';
-		$html .= '<div class="voice_f_name" data-value="'.$friend->guid.'">'.$friend->name .'</div>';
+		$html .= '<div class="voice_f_name" data-value="'.hash('md5',$friend->guid).'">'.$friend->name .'</div>';
 		
 	}
 	$html .= '</div>';
@@ -92,7 +92,7 @@
 			callStatus = "CONNECTED";
 			$("#voice_stop").hide();
 			$("#voice_message").html("Connecting with "+callname+" ... ");
-			window.location.replace("$link"+"/"+$guid+"/"+callingid);
+			window.location.replace("$link"+"/$guid/"+callingid+"/call");
 		}				    		
 
 	};

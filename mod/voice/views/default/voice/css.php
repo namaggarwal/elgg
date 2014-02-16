@@ -18,6 +18,19 @@ a.voiceLink:hover{
 	
 }
 
+#voice_window{
+	position: fixed;
+width: 50%;
+height: 500px;
+top: 0px;
+bottom: 0px;
+background: #EEE;
+border: 1px solid #AAA;
+margin: auto;
+box-shadow: 2px 4px 2px 2px #AAA;
+display:none;
+}
+
 #voice_calling{
 	position: absolute;
 	top: 0px;

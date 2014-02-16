@@ -1,29 +1,27 @@
 <?php	
 	//need to be logged in to see your feed
 	gatekeeper();
-	$guid = get_loggedin_user()->guid;
-
-	/*$html .= '<div id="voice_calling">';
-	$html .= '<div><span id="voice-name"></span><span> is calling you.</span></div>';
-	$html .= '<div><span><a id="voice-link" href="#">Click Here</a></span><span>to answer</span>';
-	$html .= '</div>';*/
+	$guid = hash("md5",get_loggedin_user()->guid);	
+	$html .= '<div id="voice_window">';
+	$html .= '</div>';
 
 	$html .= '<script type="text/javascript">';
     $html .= <<<EOT
     	
     	var chatSocket,
     		incomingid = 0,
-    		incomingtimeout,
+    		incomingtimeout,   
     		callStatus = 'DISCONNECTED';
 
+    	
     	$(document).ready(function(){
-
-    		chatSocket = node.connect("chat");
-			chatSocket.emit("setGUID",{"guid":$guid});
+   		chatSocket = node.connect("chat");
+			chatSocket.emit("setGUID",{"guid":"$guid"});
 			chatSocket.on("incomingcall",onIncomingCall);			
-			chatSocket.on("stopcall",onStopCall);			
+			chatSocket.on("stopcall",onStopCall);		
     	});
 
+		
 		function onStopCall(data){
 			if(incomingid==data.friendid){
 				$("#voice_calling").remove();
@@ -51,7 +49,7 @@
 			callDiv.find("#voice-name").html(data.name);
 			callDiv.find("#voice-accept").bind("click",function(){				
 				chatSocket.emit("callaccepted",{"friendid":data.guid});
-				window.location.replace(data.link);
+				window.location.replace(data.link+"/answer");
 				callStatus = "CONNECTED";
 			});
 

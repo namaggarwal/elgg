@@ -33,11 +33,17 @@
 							set_input('action','invite');
 							break;							
 				case 'join':					
-							if(isset($page[1]) && isset($page[2]) && isset($page[3])){
+							if(isset($page[1]) && isset($page[2]) && isset($page[3]) && isset($page[4])){
 								set_input('action','join');
 								set_input('myid',$page[2]);
 								set_input('perid',$page[3]);
 								set_input('room',$page[1]);
+								set_input('actype',$page[4]);
+								$guid = hash("md5",get_loggedin_user()->guid);
+								if($page[2] != $guid){
+									return false;
+								}
+
 							}else{
 								return false;
 							}
