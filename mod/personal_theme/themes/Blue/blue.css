@@ -1,4 +1,21 @@
+body{
+	background : url("images/woodbg.jpg");
+}
+
+
+#layout_header{
+	background:none;
+}
+
+#layout_canvas{
+	background: #f0f0f0;
+}
+
+#layout_spotlight{
+	background: #f0f0f0;
+}
+
 div#elgg_topbar{
 	
-	background:blue;
+	background:#127ad7;
 }

@@ -1,0 +1,33 @@
+body{
+	background : url("images/bamboo.png");
+}
+
+
+#layout_header{
+	background:none;
+}
+
+#layout_canvas{
+	background: rgba(240,240,240,0.9);
+}
+
+#layout_spotlight{
+	background: #f0f0f0;
+}
+
+#elgg_topbar_container_left a.usersettings{
+	color:white;
+}
+
+#elgg_topbar_container_left a.usersettings:hover{
+	color:black;
+}
+
+div#elgg_topbar{
+	
+	background:#70a52b;
+}
+
+#wrapper_header a{
+	color:#7c6b21;
+}
