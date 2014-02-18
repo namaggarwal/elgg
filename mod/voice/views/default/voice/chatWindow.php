@@ -5,7 +5,7 @@
 	$guid = hash("md5",get_loggedin_user()->guid);
 
 	$name = get_loggedin_user()->name;
-	$html="";	
+	$html ="";	
 	$room_name = get_input('room');
 	//$html .= '<script src="'.$CONFIG->url.'mod/voice/scripts/simplewebrtc.js" type="text/javascript"></script>';
 	$html .= '<script type="text/javascript" src="'.$CONFIG->url.'/mod/voice/scripts/peer.min.js"></script>';
