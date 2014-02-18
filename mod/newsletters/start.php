@@ -3,10 +3,19 @@
 	global $CONFIG;
 	function newsletters_init()
 	{	
+
+		// Get config
+		global $CONFIG;
 		extend_view('css','newsletters/css');	
 		extend_view('elgg_topbar/extend','newsletters/topbar');
 		register_page_handler('newsletters','newsletters_page_handler');
 		register_action('newsletters/delete', false, $CONFIG->pluginspath . 'actions/delete.php');
+
+		// Set up menu for logged in users
+		if (isloggedin()) 
+		{
+			add_menu(elgg_echo('Newsletter'), $CONFIG->wwwroot . "pg/newsletters/");
+		}
 	}
 
 

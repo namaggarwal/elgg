@@ -32,6 +32,4 @@
 	print $html;
 ?>
 
-
-<script type="text/javascript" src="<?php echo $CONFIG->wwwroot; ?>vendors/jquery/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="<?php echo $CONFIG->wwwroot; ?>/mod/newsletters/js/list.js"></script>

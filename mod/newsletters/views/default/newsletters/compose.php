@@ -44,8 +44,7 @@
                 	type: "POST",
                 	data: {"news_title":newstitle,"news_date":newsdate,"news_body":newsbody,"news_type":newstype},
                         success: function (data) {
-                                        console.log(data);
-                                        notifySocket.emit("notify",{'link':data});
+                                                        
                         },
                         error: function(xhr,code,data){
                         	console.log(xhr.msg, data);
