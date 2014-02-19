@@ -12,7 +12,14 @@
 		// Register a page handler, so we can have nice URLs
 		register_page_handler('voice','voice_page_handler');		
 
+		global $CONFIG;
 
+		// Set up menu for logged in users
+		if (isloggedin()) 
+		{
+			add_menu(elgg_echo('Voice chat'), $CONFIG->wwwroot . "pg/voice/");
+		}
+		
 	}
 
 

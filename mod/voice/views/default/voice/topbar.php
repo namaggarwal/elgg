@@ -1,13 +1,11 @@
 <?php	
 	//need to be logged in to see your feed
 	gatekeeper();
-	$guid = hash("md5",get_loggedin_user()->guid);	
-	$html .= '<div id="voice_window">';
-	$html .= '</div>';
+	$guid = hash("md5",get_loggedin_user()->guid);		
 
-	$html .= '<script type="text/javascript">';
+	$html  = '<script type="text/javascript">';
     $html .= <<<EOT
-    	
+
     	var chatSocket,
     		incomingid = 0,
     		incomingtimeout,   
@@ -77,6 +75,6 @@ EOT;
 	$html .= '</script>';
 
 	print $html;
+	
 ?>	
-	<a href="<?php echo $vars['url']; ?>pg/voice/" class="voiceLink">Voice</a>	
 

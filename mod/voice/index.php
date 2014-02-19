@@ -5,7 +5,6 @@
 
 
 	gatekeeper();
-
 	global $CONFIG;
 
 	switch(get_input("action")){
