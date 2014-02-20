@@ -976,7 +976,7 @@ input[type="submit"] {
 }
 #register-box {
     text-align:left;
-    width:400px;
+    width:98%;
     padding:10px;
     background: #dedede;
     margin:0;

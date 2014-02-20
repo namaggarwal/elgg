@@ -59,7 +59,7 @@ STR;
 						   // successCallback
 						   function(localMediaStream) {
 						   mediaStream = localMediaStream;					   	
-						      setTimeout(makeCall,2000);
+						      setTimeout(makeCall,4000);
 						      var video = document.getElementById("localVideo");
       						  video.src = window.URL.createObjectURL(localMediaStream);
 

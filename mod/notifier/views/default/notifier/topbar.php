@@ -16,6 +16,10 @@
 		options.delay = 6000;		
 		options.onNewNotification = function(data){
 
+			if(data.callback){
+				data.callback(data);
+				return;
+			}
 			var str = '<div class="notification">';
 			str += '<div class="closeNot">X</div>';
 			str += '<div class="notMess">'+data.message+'</div>';
@@ -64,6 +68,7 @@
 			}
 			myid = guid;
 			notify = node.connect("notify");
+			console.log(myid);
 			notify.emit("setGUID",{"guid":myid});
 			notify.on("newNot",options.onNewNotification);
 			$("#notCont").on("click",".closeNot",closeNotification);
@@ -84,11 +89,17 @@
 
 				url:"$baseUrl"+"pg/notifier",
 				type:"POST",
-				data:{"myid":myid,"fid":recid,"message":postData.message,"link":postData.link,"delay":postData.delay,"callback":postData.callback,"otherData":postData.otherData},
-				success:function(data){					
+				data:{"myid":myid,"notType":postData.notType,"fid":recid,"message":postData.message,"link":postData.link,"delay":postData.delay,"callback":postData.callback,"otherData":JSON.stringify(postData.otherData)},
+				success:function(data){
+					if(postData.success){
+						postData.success(data);
+					}
 				},
 				error:function(err){
 
+					if(postData.error){
+						postData.error(err);
+					}
 				}
 
 			});
@@ -105,12 +116,7 @@
 	})(node);
 	
 	$(document).ready(function(){
-		notifier.init(node,$guid);
-	/*	var pData = {
-			message : "I am the best",
-			link : "http://google.com"			
-		};
-	notifier.notifyUser("2",pData);*/
+		notifier.init(node,$guid);	
 
 	});
 	

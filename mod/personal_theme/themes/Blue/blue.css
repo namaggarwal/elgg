@@ -7,6 +7,10 @@ body{
 	background:none;
 }
 
+#elgg_topbar_container_left a.usersettings{
+	color:white;
+}
+
 #layout_canvas{
 	background: #f0f0f0;
 }

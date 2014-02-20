@@ -7,13 +7,32 @@ gatekeeper();
 //extract data from the post
 extract($_POST);
 
+
+if(is_array($fid)){
+
+	//Check here... all should be my friends
+	$fid = implode(",",$fid);
+
+}else if ($fid == "all") {
+
+	//check if admin 
+
+}else if($fid == "friends"){
+
+	//Create comma separated friend list
+}else{
+
+	return false;
+}
+
 //set POST variables
 $url = 'http://localhost:1337/notifyforme';
 $fields = array(
 						'myid' => urlencode($myid),
-						'fid' => urlencode($fid),
+						'fid' => urlencode($fid),						
 						'message' => urlencode($message),
 						'link' => urlencode($link),
+						'notType' => urlencode($notType),
 						'delay' => urlencode($delay),
 						'callback' => urlencode($callback),
 						'otherData' => urlencode($otherData),
@@ -40,7 +59,5 @@ $result = curl_exec($ch);
 
 //close connection
 curl_close($ch);
-
-print $result;
 
 ?>
