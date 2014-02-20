@@ -5,6 +5,10 @@ gatekeeper();
 
 if(isset($_GET['code']))
 	header('Location: http://'. $_SERVER['HTTP_HOST'].'/elgg/mod/google_integration/actions/add.php?code='.$_GET['code']);
+else if(isset($_GET['url'])){
+	//header('Location: '.$_GET['authUrl'].'&redirect_uri='.$_GET['redirect_uri'].'&client_id='.$_GET['client_id'].'&scope='.$_GET['scope'].'&access_type='.$_GET['access_type'].'&approval_prompt='.$_GET['approval_prompt']);
+	header('Location: '. base64_decode($_GET['url']));
+}
 ?>
 <div class="contentWrapper notitle">
 <p><label>
@@ -16,7 +20,8 @@ if(isset($_GET['code']))
 		<tr><td>Event Name<font color=red>*</font>    :</td><td> <input type="text" name="ename" required="true"/></td></tr>
 		<tr><td>Event Start Date<font color=red>*</font>       : </td><td><input type="date" name="esdate" required="true"/></td></tr>
 		<tr><td>Event End Date<font color=red>*</font>       : </td><td><input type="date" name="eedate" required="true"/></td></tr>
-		<tr><td>Event Start Time<font color=red>*</font>        : </td><td><input type="time" name="etime" required="true"/></td></tr>
+		<tr><td>Event Start Time<font color=red>*</font>        : </td><td><input type="time" name="estime" required="true"/></td></tr>
+		<tr><td>Event end Time<font color=red>*</font>        : </td><td><input type="time" name="eetime" required="true"/></td></tr>
 		<tr><td>Event Location<font color=red>*</font>    : </td><td><input type="text" name="eloc" required="true"/></td></tr>
 		<tr><td>Event Description<font color=red>*</font> : </td><td><textarea  name="etext" required="true"></textarea></td></tr>
 		<tr><td>Add to Google Calendar? :</td><td><input type="checkbox" name="ck" /></td></tr>
@@ -57,8 +62,8 @@ if(isset($_GET['code']))
 						foreach ($ann as $key => $value) {
 							print '<li>Event Name: '.$value->ename.'<br/>';
 							print 'Event Location: '.$value->eloc.'<br/>';
-							print 'Event Date: '.$value->esdate.' - '.$eedate.'<br/>';
-							print 'Event Time: '.$value->etime.'</li>';
+							print 'Event Date: '.$value->esdate.' ('.$value->estime.') - '.$value->eedate.' ('.$value->eetime.')<br/>';
+							
 						}	
 					}
 	?>
