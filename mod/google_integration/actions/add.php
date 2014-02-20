@@ -24,9 +24,14 @@ if(isset($_POST['eedate'])) {
     $_SESSION['eedate']=$_POST['eedate'];
     $eedate=$_POST['eedate'];
 }
-if(isset($_POST['etime'])) {
-    $_SESSION['etime']=$_POST['etime'];
-    $etime=$_POST['etime'];
+if(isset($_POST['estime'])) {
+    $_SESSION['estime']=$_POST['estime'];
+    $estime=$_POST['estime'];
+}
+
+if(isset($_POST['eetime'])) {
+    $_SESSION['eetime']=$_POST['eetime'];
+    $eetime=$_POST['eetime'];
 }
 if(isset($_POST['eloc'])) {
     $_SESSION['eloc']=$_POST['eloc'];
@@ -40,8 +45,8 @@ if(isset($_POST['ck'])){
      $_SESSION['ck']=$_POST['ck'];
      $ck=$_POST['ck'];
 }else{
-    // Save to ELGG
-    $gevents = new ElggObject();   
+    if(isset($_POST['ename'])){
+   $gevents = new ElggObject();   
 
 // Tell the system it's a message
     $gevents->subtype = "googleevents";
@@ -57,15 +62,13 @@ if(isset($_POST['ck'])){
     $gevents->ename = $ename;
     $gevents->eedate = $eedate;
     $gevents->esdate = $esdate;
-    $gevents->etime = $etime;
+    $gevents->estime = $estime;
+    $gevents->eetime = $eetime;
     $gevents->eloc = $eloc;
     $gevents->etext = $etext;
     $gevents->save();
-
+    }
 }
-
-
-
 
 if(isset($_POST['ck']) || isset($_SESSION['ck'])){ 
 
@@ -93,31 +96,22 @@ if(isset($_POST['ck']) || isset($_SESSION['ck'])){
         }
 
         if (isset($_SESSION['token'])) {
-            print "inside token";
             $client->setAccessToken($_SESSION['token']);
+            unset($_SESSION['token']);
         }
        
 
 
       if ($client->getAccessToken()) {
-        print $_SESSION['ename'];
-        print $_SESSION['eloc'];
-        print $_SESSION['esdate'];
-        print $_SESSION['eedate'];
-        print $_SESSION['etime'];
-        print $_SESSION['etext'];
-        print $_SESSION['ck'];
-        exit;
-
         $event = new Google_Event();
-        $event->setSummary($ename);
-        $event->setLocation($eloc);
+        $event->setSummary($_SESSION['ename']);
+        $event->setLocation($_SESSION['eloc']);
 
         $start = new Google_EventDateTime();
-        $start->setDateTime('2014-02-20T10:00:00.000+08:00');
+        $start->setDateTime($_SESSION['esdate'].'T'.$_SESSION['estime'].':00.000+08:00');
         $event->setStart($start);
         $end = new Google_EventDateTime();
-        $end->setDateTime('2014-02-21T10:25:00.000-05:00');
+        $end->setDateTime($_SESSION['eedate'].'T'.$_SESSION['eetime'].':00.000+08:00');
         $event->setEnd($end);
         $createdEvent = $cal->events->insert('primary', $event); //Returns array not an object
         
@@ -135,25 +129,28 @@ if(isset($_POST['ck']) || isset($_SESSION['ck'])){
         $gevents->access_id = ACCESS_PRIVATE;
         
     // Set its description appropriately
-        $gevents->ename = $ename;
-        $gevents->eedate = $eedate;
-        $gevents->esdate = $esdate;
-        $gevents->etime = $etime;
-        $gevents->eloc = $eloc;
-        $gevents->etext = $etext;
+        $gevents->ename = $_SESSION['ename'];
+        $gevents->eedate = $_SESSION['eedate'];
+        $gevents->esdate = $_SESSION['esdate'];
+        $gevents->estime = $_SESSION['estime'];
+        $gevents->eetime = $_SESSION['eetime'];
+        $gevents->eloc = $_SESSION['eloc'];
+        $gevents->etext = $_SESSION['etext'];
         $gevents->save();
         unset($_SESSION['ename']);
         unset($_SESSION['esdate']);
         unset($_SESSION['eedate']);
+        unset($_SESSION['eetime']);
+        unset($_SESSION['estime']);
         unset($_SESSION['eloc']);
-        unset($_SESSION['text']);
+        unset($_SESSION['etext']);
         unset($_SESSION['ck']);
-        forward($_SERVER['HTTP_REFERER']);
+        unset($_SESSION['token']);
+        forward($_SERVER['HTTP_REFERER'].'mod/google_integration/events/');
        }else {
              $authUrl = $client->createAuthUrl();
-
-             print $authUrl;
-            exit;
+             forward($_SERVER['HTTP_REFERER'].'?url='.base64_encode($authUrl));
+            
         } 
     
     }else{
@@ -161,8 +158,11 @@ if(isset($_POST['ck']) || isset($_SESSION['ck'])){
         unset($_SESSION['esdate']);
         unset($_SESSION['eedate']);
         unset($_SESSION['eloc']);
-        unset($_SESSION['text']);
+        unset($_SESSION['etext']);
         unset($_SESSION['ck']);
+        unset($_SESSION['eetime']);
+        unset($_SESSION['estime']);
+        unset($_SESSION['token']);
         forward($_SERVER['HTTP_REFERER']);
 
 }
