@@ -2,21 +2,19 @@
 
   //Ad link retrieval code here
 
-  // $ads = get_entities("object","ads");
-  // $advert = array();
-  //     if(is_array($news)){
-  //       foreach ($news as $key => $value) {
-  //         $advert[$value->guid] = array();
-  //         $advert[$value->guid]["GUID"] =   $value->guid;
-  //         $advert[$value->guid]["TITLE"]  =   $value->title;
-  //         $advert[$value->guid]["DESC"] =   $value->description;
-  //         $advert[$value->guid]["DATE"] =   $value->time_created;
-  //         $advert[$value->guid]["TARGETLINK"] =   $value->targetlink;
-  //         $advert[$value->guid]["LINK"] = $CONFIG->url.get_metadata_byname($value->guid,"permLink")->value;
-  //       }
-
-  //     $selectedLink = array_rand($advert);
-  //     print($selectedLink["LINK"]);
+  $ads = get_entities("object","advertisement");
+    if(is_array($ads)){
+        foreach ($ads as $key => $value) {
+          $advert[$value->guid] = array();
+          $advert[$value->guid]["GUID"] =   $value->guid;
+          $advert[$value->guid]["TITLE"]  =   $value->title;
+          $advert[$value->guid]["DESC"] =   $value->description;
+          $advert[$value->guid]["DATE"] =   $value->date;
+          $advert[$value->guid]["LINK"] = get_metadata_byname($value->guid,"link")->value;
+        }
+      }
+    
+    $selectedLink = $advert[array_rand($advert)]["LINK"];
     
   ?>
 
@@ -24,7 +22,7 @@
   <div class="clearfloat"></div>
 
   <!--ADVERTISEMENT CODE-->
-  <iframe id="myIframe" style="border:0;" sandbox="allow-same-origin" src="http://matthewjamestaylor.com/responsive-ads/ad.html"  height="60" width="100%">
+  <iframe id="myIframe" style="border:0;" sandbox="allow-same-origin allow-scripts" src=<?php echo $selectedLink ?> height="60" width="100%">
   </iframe>
 
   <!--END ADVERTISEMENT CODE-->

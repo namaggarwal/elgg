@@ -1,73 +1,49 @@
 <?php
 
+	//require_once(dirname(dirname(dirname(__FILE__))) . "/engine/start.php");
 	//Hire a watchman to check if administrator
 
 	// if(!isadminloggedin()){
 	// 	forward("pg/dashboard");
 	// }
 
+
 	//Set the base path
 	$base_path = parse_url($CONFIG->url)["path"];
 
-
 	//Start saving in the Database
-
 	$title = get_input('ad_title');
 	$link = get_input('ad_link');
 	$content = get_input('ad_content');
+	$description = get_input('ad_description');
 	$access = 2; // public access
-
-
-	$err;
-
-	if(empty($title)){
-		$err = "<div>Please enter a title for your ad</div>";
-	}
-
-	if(empty($link)){
-		$err .= "<div>Please provide a link for your advertisement.</div>";
-	}
-
-	if(empty($content)){
-		$err .= "<div>Content cannot be empty.</div>";
-	}
-
-	if(empty($newstype)){
-		$err .= "<div>Content cannot be empty.</div>";
-		return false;
-	}
-
-	if(!empty($err)){
-		register_error($err);
-		forward("pg/advertisements/publish");
-	}
-
+	$now = time();
 	//Start saving to database
 
 	//Initialize Elgg object
-	$newsletter  = new ElggObject();
+	$advert  = new ElggObject();
+	//Tell the fucker elgg that it is a advertisement
+	$advert->subtype = "advertisement";
 
-	//Tell the fucker elgg that it is a newsletter
-	$newsletter->subtype = "advertisement";
-
-	//The owner of this newsletter is the logged in user
+	//The owner of this advert is the logged in user
 	$announcement->owner_guid = $_SESSION['user']->getGUID();
 
 	//Set other attributes
-	$newsletter->date = $date;
-	$newsletter->title = $title;
-	$newsletter->description = $content;
-	$newsletter->link = $link;
-	$newsletter->access_id = $access;
-	$newsletter->postid = $now;
+	$advert->date = $date;
+	$advert->title = $title;
+	$advert->content = $content;
+	$advert->description = $description;
+	$advert->link = $link;
+	$advert->access_id = $access;
+	$advert->postid = $now;
 
-	$newsletter->permlink = "pg/advertisements/".$guid;
+	$advert->permlink = "pg/ads/".$guid;
 
 
 	//Go put this crap in the database
-	$newsletter->save();
+	$advert->save();
 
-	echo $newsletter->postid;
-	exit();
+	system_message("Advertisement has been successfully posted.");
+	forward("pg/ads/publish");
 
 ?>
