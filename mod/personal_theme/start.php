@@ -78,7 +78,7 @@ function themeswitcher_set_theme_list()
   }
 
   
-   print "http://$_SERVER[HTTP_HOST]"."/elgg/mod/personal_theme/themes/".$theme."/".strtolower($theme).".css";
+   print "http://$_SERVER[HTTP_HOST]"."/elgg/mod/personal_theme/themes/".$theme."/".$theme.".css";
   }
 
 
