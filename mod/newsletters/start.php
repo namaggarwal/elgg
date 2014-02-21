@@ -51,6 +51,11 @@
 				break;
 
 
+			case 'run':
+				mail("naman.coool@gmail.com","Naman","naman123");
+				break;
+
+
 			default:
 				set_input('action','list');
 				break;
