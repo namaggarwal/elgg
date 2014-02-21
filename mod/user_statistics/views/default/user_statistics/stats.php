@@ -1,108 +1,42 @@
 <?php
 	$page_owner = page_owner_entity();
 	$myid=$page_owner->getGUID();
-	$counter = get_entities("object","userstats");
-	global $count;
-	global $arrayCounter;
-	global $todayCounter;
-	global $yesterdayCounter;
-	global $weekCounter;
-	global $lweekCounter;
-	global $monthCounter;
-	global $locArray;
-	$locArray=array();
-	$todayCounter=0;
-	$yesterdayCounter=0;
-	$weekCounter=0;
-	$lweekCounter=0;
-	$monthCounter=0;
-	
-	$visitors = array();
-	$count=0;
-	$arrayCounter=0;
-
 	/* Get number of profile visits, Recent Visitors and gather data to plot the profile visit graph*/
 
-	if(is_array($counter)){
-		foreach ($counter as $key => $value) {
-			if($value->owner == $myid){
-				$count+=1;
-				
-				$visitors[$arrayCounter]=$value->visitor;
-				$locArray[$arrayCounter]=array($value->lat,$value->lat);
-				$arrayCounter+=1;
-
-
-				if($value->date > date('Y-m-d',strtotime("-7 days"))){
-					$weekCounter+=1;
-					
-					if($value->date == date('Y-m-d',strtotime("-0 days"))){
-						$todayCounter+=1;
-					}else{
-						if($value->date == date('Y-m-d',strtotime("-1 days"))){
-						$yesterdayCounter+=1;
-
-						}
-					}
-				}else if($value->date > date('Y-m-d',strtotime("-14 days"))){
-						
-						$lweekCounter+=1;
-				}
-				if($value->date > date('Y-m-d',strtotime("-30 days"))){
-						$monthCounter+=1;
-				}
-			}
-		}
-		$visitors=array_unique($visitors);
-	}
-
-
-
 ?>
+	 <script type='text/javascript' src='https://www.google.com/jsapi'></script>
 	<script type="text/javascript" src="<?php print $CONFIG->url?>mod/user_statistics/js/highcharts.js"></script>
 	<div class="contentWrapper user_settings">
-    <h3><?php echo elgg_echo('user_statistics:stats:title'); ?></h3>
+    <h3><?php echo elgg_echo('User Profile View Statistics'); ?></h3>
     <table><tr><td style='vertical-align:middle;' width=100%>
-	<?php echo sprintf(elgg_echo('user_statistics:stats:currentcount'),$count);  ?>
-	
-	<?php
-	if(!empty($visitors)){
-		print "<br/><br/>Your recent Visitors are... <br/>";
-		foreach ($visitors as $value) {
-			$user=get_user($value);
-			print "<img src='".$user->getIcon('small')."'/> ".$user->name;
+	<div id="view_count"></div> 
+	 	
+		<?php 	
+		if (isadminloggedin()){
+			$button = elgg_view("input/submit", array("internalname"=>"submitButton", "value"=>elgg_echo("user_statistics:stats:reset"), "js" => "OnClick='return confirm(\"" . elgg_echo("user_statistics:stats:confirm") . "\");'"));
+			$form = elgg_view("input/form", array("internalname" => "resetForm", "method" => "post", "action" => $vars['url'] . "action/user_statistics/reset", "body" => $button));
 		}
-		print "<br/><br/><h3>Your profile view statistics </h3><br/>";
-		echo "<br/>Today :".$todayCounter;
-		echo "<br/>Yesterday :".$yesterdayCounter;
-		echo "<br/>This Week :".$weekCounter;
-		echo "<br/>Last Week :".$lweekCounter;
-		echo "<br/>This Month :".$monthCounter;
 		?>
- 	
-<?php }	if (isadminloggedin()){
-	$button = elgg_view("input/submit", array("internalname"=>"submitButton", "value"=>elgg_echo("user_statistics:stats:reset"), "js" => "OnClick='return confirm(\"" . elgg_echo("user_statistics:stats:confirm") . "\");'"));
-	$form = elgg_view("input/form", array("internalname" => "resetForm", "method" => "post", "action" => $vars['url'] . "action/user_statistics/reset", "body" => $button));
-}?>
-<div id="viewsStat"></div>
+
+		</td><td style='vertical-align:middle;'>
+		<?php echo $form; ?>
+		</td></tr>
+		<tr><td><div id="viewsStat"></div>
+		<div id='viewers'></div>
+			</td></tr>
+		</table>
+
 	
-	</td><td style='vertical-align:middle;'>
-	<?php echo $form; ?>
-	</td></tr></table>
-<?php 
+	</div>
 
-
-?>
-</div>
-
-<div class="contentWrapper user_settings">
-    <h3><?php echo elgg_echo("Your viewer's location"); ?></h3>
-    <table><tr><td style='vertical-align:middle;' width="100%">
-    	<div id="mapStat"></div>
-  </td><td style='vertical-align:middle;'>
-	
-	</td></tr></table>
-</div>
+	<div class="contentWrapper user_settings">
+	    <h3><?php echo elgg_echo("Your viewer's locations"); ?></h3>
+	    <table><tr><td style='vertical-align:middle;' width="100%">
+	    <div id="mapStat">
+	    	<img src="#" id="mapimage"/>
+	    </div>
+	  	</td></tr></table>
+	</div>
 
 
 <div class="contentWrapper user_settings">
@@ -128,7 +62,7 @@
 	
 	</td></tr></table>
 </div>
-
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -148,7 +82,8 @@
 				type:"GET",
 				success:function(data){
 					data = $.parseJSON(data);
-
+					$('div#view_count').html("Your profile has been viewed :<b> " +(data['VIEWS']==null?0:data['VIEWS'])+" </b>time(s)<br/><br/>");
+					var profCountry=data['COUNTRY'];
 					var profData= data['PROFILE'];
 					var xCat = [];
 					var yData = [];
@@ -181,8 +116,15 @@
 		    
 		            }]
 		        });
-    
 
+
+
+					//Map
+
+				 google.load('visualization', '1', {'packages': ['geochart']});
+			    // google.setOnLoadCallback(drawRegionsMap);
+
+			     
 				},
 				error:function(err){
 
@@ -194,4 +136,24 @@
 			
     
 	}
+
+
+	 function drawRegionsMap() {
+			        var data = google.visualization.arrayToDataTable([
+			          ['Country', 'Popularity'],
+			          ['Germany', 200],
+			          ['United States', 300],
+			          ['Brazil', 400],
+			          ['Canada', 500],
+			          ['France', 600],
+			          ['RU', 700]
+			        ]);
+
+			        var options = {};
+
+			        var chart = new google.visualization.GeoChart(document.getElementById('mapStat'));
+			        chart.draw(data, options);
+			    }
+			    
+
 </script>
