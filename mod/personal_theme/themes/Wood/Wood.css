@@ -1,0 +1,29 @@
+body{
+	background : url("images/woodbg.jpg");
+}
+
+
+#layout_header{
+	background:none;
+}
+
+#elgg_topbar_container_left a.usersettings{
+	color:white;
+}
+
+#layout_canvas{
+	background: #f0f0f0;
+}
+
+#layout_spotlight{
+	background: #f0f0f0;
+}
+
+div#elgg_topbar{
+	
+	background:#89630f;
+}
+
+#wrapper_header a{
+	color:black;
+}
