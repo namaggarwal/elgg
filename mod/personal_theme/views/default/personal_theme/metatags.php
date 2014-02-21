@@ -13,7 +13,7 @@
   
   if(is_array($theme)){
   	
-  	$link=$CONFIG->url."mod/personal_theme/themes/".$theme[0]->title."/".strtolower($theme[0]->title).".css";
+  	$link=$CONFIG->url."mod/personal_theme/themes/".$theme[0]->title."/".$theme[0]->title.".css";
   	print '<link href="'.$link.'" data-css="external" type="text/css" rel="stylesheet"/>';
   }
 ?>
