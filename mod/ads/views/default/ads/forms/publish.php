@@ -48,10 +48,12 @@
 </div>
 <br><br><br>
 	<div style="display:none" class="adpreviewtext">ADVERTISEMENT PREVIEW</div>
- 	<iframe style="display:none" style="border:0;" id="ad-iframe" sandbox="allow-same-origin" seamless src="#"  height="60" width="100%">
+ 	<iframe style="display:none" style="border:0;" id="ad-iframe" sandbox="allow-same-origin allow-scripts" seamless src="#"  height="60" width="100%">
  </iframe>
 
 <script type="text/javascript">
+
+
 	$('.ad-title').on("keyup", function(){
 		$('.titlepreview').text($('.ad-title').val());
 	});
@@ -78,6 +80,8 @@
 
 
 	$('.preview-btn').on("click",function(){
+		var urlregex = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+		
 		$('.adpreviewtext').show();
 		$('#ad-iframe').show();
 		$('.submit-btn').show();

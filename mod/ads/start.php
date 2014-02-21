@@ -1,15 +1,17 @@
 <?php
+	
 
-	function ads_init() {		
+	function ads_init() {	
+		global $CONFIG;	
     	
 		// Extend system CSS with our own styles, which are defined in the shouts/css view
 		extend_view('css','ads/css');
+		register_action("ads/publishad",false,$CONFIG->pluginspath . "ads/actions/publishad.php",true);
 
 		// Register a page handler, so we can have nice URLs
 		register_page_handler('ads','ads_handler');
 
 		//Setting up page
-		global $CONFIG;
 		// if requested admin area by logged admin
 		if ( get_context() == 'admin' && isadminloggedin() ){
 			add_submenu_item( elgg_echo('Ads'), $CONFIG->wwwroot . 'pg/ads/publish/');
@@ -53,7 +55,6 @@
 	}
 	 
 	global $CONFIG;	
-	register_action("ads/publishad",false,$CONFIG->pluginspath . "ads/actions/publishad.php",true);
 	// register for the init, system event when our plugin start.php is loaded
 	register_elgg_event_handler('init', 'system', 'ads_init',9999);
 
