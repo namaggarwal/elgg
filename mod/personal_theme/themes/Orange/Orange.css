@@ -1,4 +1,33 @@
+body{
+	background : url("images/black_pattern.jpg");
+}
+
+
+#layout_header{
+	background:none;
+}
+
+#layout_canvas{
+	background: rgba(248,92,165,0.9);
+}
+
+#layout_spotlight{
+	background: #f0f0f0;
+}
+
+#elgg_topbar_container_left a.usersettings{
+	color:white;
+}
+
+#elgg_topbar_container_left a.usersettings:hover{
+	color:black;
+}
+
 div#elgg_topbar{
 	
-	background:orange;
+	background:#fb97c6;
+}
+
+#wrapper_header a{
+	color:#f97ab6;
 }

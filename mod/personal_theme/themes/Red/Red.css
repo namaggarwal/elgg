@@ -1,4 +1,33 @@
+body{
+	background : url("images/scrachy.jpg");
+}
+
+
+#layout_header{
+	background:none;
+}
+
+#layout_canvas{
+	background: rgba(18,13,2,0.9);
+}
+
+#layout_spotlight{
+	background: #f0f0f0;
+}
+
+#elgg_topbar_container_left a.usersettings{
+	color:white;
+}
+
+#elgg_topbar_container_left a.usersettings:hover{
+	color:black;
+}
+
 div#elgg_topbar{
 	
-	background:red;
+	background: rgb(18,13,2);
+}
+
+#wrapper_header a{
+	color:rgb(18,13,2);
 }

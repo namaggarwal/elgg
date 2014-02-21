@@ -1,4 +1,33 @@
+body{
+	background : url("images/skyline.png");
+}
+
+
+#layout_header{
+	background:none;
+}
+
+#layout_canvas{
+	background: rgba(23,24,1,0.9);
+}
+
+#layout_spotlight{
+	background: #f0f0f0;
+}
+
+#elgg_topbar_container_left a.usersettings{
+	color:white;
+}
+
+#elgg_topbar_container_left a.usersettings:hover{
+	color:black;
+}
+
 div#elgg_topbar{
 	
-	background:yellow;
+	background:#585c04;
+}
+
+#wrapper_header a{
+	color:#7c6b21;
 }
