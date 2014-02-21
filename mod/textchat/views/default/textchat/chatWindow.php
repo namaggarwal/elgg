@@ -98,6 +98,7 @@
 		str += '<div';
 
 		textChatCont.append(str);
+		textChatCont.scrollTop(textChatCont.prop("scrollHeight"));
 
 	}
 
@@ -117,6 +118,7 @@
 			data:{guid:$guid,room:"$room",message:mess},
 			success:function(data){
 				textChatCont.append(createMessage("Me",mess));
+				textChatCont.scrollTop(textChatCont.prop("scrollHeight"));
 			},
 			error:function(err){
 				console.log("Error sending last message"+err);
@@ -130,6 +132,7 @@
 	function onNewMessage(data){
 
 		textChatCont.append(createMessage(data.name,data.message));
+		textChatCont.scrollTop(textChatCont.prop("scrollHeight"));
 	}
 
 	function createMessage(name,message){

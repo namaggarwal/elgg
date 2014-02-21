@@ -58,6 +58,7 @@
 	width: 69%;
 	float: left;
 	border-radius: 4px;
+	overflow-y:auto;
 }
 
 #textonlineusers{
