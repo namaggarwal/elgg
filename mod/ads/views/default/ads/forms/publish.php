@@ -1,13 +1,11 @@
 <?php
 
 	//gatekeeper();
-print("shantanu");
-exit();
 ?>
 
 
 
-<!-- <div id="advertisementform">
+<div id="advertisementform">
 	<form action="<?php echo $vars['url']; ?>action/ads/publishad" method="post"  name="adform">
 		<div class="inpCont" id="ad-title">
 			<div class="inptext">Title</div>
@@ -87,4 +85,3 @@ exit();
 	});
 
 </script>
- -->
