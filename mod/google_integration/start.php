@@ -21,6 +21,7 @@
 	register_action('google_integration/invite', false, $CONFIG->pluginspath . 'google_integration/actions/invite.php');
 	register_elgg_event_handler('pagesetup','system','google_integration_pagesetup',1000);
 	register_action('google_integration/add', false, $CONFIG->pluginspath . 'google_integration/actions/add.php');
+	register_action('google_integration/delete', false, $CONFIG->pluginspath . 'google_integration/actions/delete.php');
 	
 
 ?>
