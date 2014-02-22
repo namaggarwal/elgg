@@ -51,7 +51,7 @@
 
 			case 'sendNewsLetter':
 				if(isset($page[1])){
-					set_input('id',$page[1]);
+					set_input('postid',$page[1]);
 					set_input('action',$page[0]);
 				}else{
 					return false;
