@@ -29,7 +29,7 @@
 
 
 		case "Once":
-			$cronString = $brokenTime[1]." ".$brokenTime[0]." ".$brokenDate[0]." ".$brokenDate[1]." ? ".$brokenDate[2].$cronlink;
+			$cronString = $brokenTime[1]." ".$brokenTime[0]." ".$brokenDate[0]." ".$brokenDate[1]." ".date('w',$timeString).$cronlink;
 			break;
 		case "Weekly":
 			$cronString = $brokenTime[1]." ".$brokenTime[0]." * * ".date('w',$timeString).$cronlink;
@@ -74,7 +74,7 @@
 	//Start saving to database
 
 	//Initialize Elgg object
-/*	$newsletter  = new ElggObject();
+	$newsletter  = new ElggObject();
 
 	//Tell the fucker elgg that it is a newsletter
 	$newsletter->subtype = "newsletter";
@@ -95,7 +95,7 @@
 	
 	
 	//Go put this crap in the database
-	$newsletter->save();*/
+	$newsletter->save();
 
 	//Create a cron tab entry
 
