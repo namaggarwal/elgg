@@ -199,7 +199,7 @@
 							print "<a href='".$vars['url']."pg/profile/".$usr->username."'><img src='".$usr->getIcon('small')."'/> ".$usr->name."</a>&nbsp;&nbsp;&nbsp;";
 						}
 					}else{
-						print "You havn't tagged any of your friends";
+						print "The file owner hasn't tagged yet !!!";
 					}
 		         print "</div>";   
 	if ($file->canEdit()) {
