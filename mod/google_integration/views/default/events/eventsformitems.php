@@ -63,7 +63,7 @@ else if(isset($_GET['url'])){
 							print '<li>Event Name: '.$value->ename.'<br/>';
 							print 'Event Location: '.$value->eloc.'<br/>';
 							print 'Event Date: '.$value->esdate.' ('.$value->estime.') - '.$value->eedate.' ('.$value->eetime.')<br/>';
-							
+							print '<form method="POST" action="/elgg/action/google_integration/delete"><input type="hidden" value="'.$value->guid.'" name="guid"><input type="submit" class="submit_button" value="Delete this Event"/></form>';
 						}	
 					}
 	?>

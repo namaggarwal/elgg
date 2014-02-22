@@ -8,6 +8,7 @@ gatekeeper();
 else
   error_reporting(E_ALL & ~E_NOTICE); 
 */
+try{
 $sClientId = '697820665951-1ljjtmecmnv5losh3d2n01pktpacglfm.apps.googleusercontent.com';
 $sClientSecret = '_ytVlByJ-ZeMT34B5kjEdMua';
 $sCallback = 'http://'.$_SERVER['HTTP_HOST'].'/elgg/mod/google_integration/index.php'; // callback url, don't forget to change it to your!
@@ -50,7 +51,7 @@ if ($_GET && $_GET['oauth_token']) {
 }
 
 ?>
-<SCRIPT LANGUAGE="JavaScript" SRC="jquery-1.3.2.min.js"></SCRIPT>
+
     <link rel="stylesheet" type="text/css" href="jquery-checkbox-search.css" />
     <SCRIPT LANGUAGE="JavaScript" SRC="jquery-checkbox-search-min.js"></SCRIPT>
 <div class="contentWrapper notitle">
@@ -88,4 +89,9 @@ if (is_array($aContacts) && !empty($aContacts)) {
    
     ?></form>
 </div>
-<?php } endif ?>
+<?php } endif 
+
+}catch (Exception $e) {
+    register_error("Sorry there seems to be some error with the service right now. Please try again later");
+}
+?>

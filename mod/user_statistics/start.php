@@ -99,7 +99,7 @@
 						$inbox_array['TWEEK']+=1;
 						$inbox_array['TMONTH']+=1;
 					}else{
-						if($time[0]<'7')
+						if((strpos($time[0],'yesterday') !== false) || ($time[0]<'7'))
 							$inbox_array['TWEEK']+=1;
 						else if($time[0]<'14')
 							$inbox_array['LWEEK']+=1;
@@ -130,7 +130,7 @@
 						$obox_array['TWEEK']+=1;
 						$obox_array['TMONTH']+=1;
 					}else{
-						if($time[0]<'7')
+						if((strpos($time[0],'yesterday') !== false) || ($time[0]<'7'))
 							$obox_array['TWEEK']+=1;
 						else if($time[0]<'14')
 							$obox_array['LWEEK']+=1;
