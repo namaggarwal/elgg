@@ -54,14 +54,11 @@ switch (get_input("action")) {
 		break;
 
 	case 'sendNewsLetter':
-	exec('crontab -l',$output);
-	$output = implode("\n",$output);
-file_put_contents('/tmp/crontab.txt',$output."\n* * * * * something".PHP_EOL);
-echo exec('crontab /tmp/crontab.txt');
-print_r($output);
 
-/*
-		$data = get_entities("user","",0,"",100);
+		delete_entities("object","newsletter");
+		print "here";
+
+		/*$data = get_entities("user","",0,"",100);
 		//sendNotification($user);
 
 		//function sendNotification($data){
@@ -113,7 +110,7 @@ print_r($output);
 		
 
 		//}
-			*/	
+		*/	
 		break;	
 	default:
 		
