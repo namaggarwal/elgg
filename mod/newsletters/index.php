@@ -61,7 +61,12 @@ switch (get_input("action")) {
 		$url = 'http://localhost:1337/notifyforme';
 		$myid = 2;	
 		$message = "New newsletter published";
-		$postobj = get_entities_from_metadata("postid", get_input('postid'), "object", "newsletter")[0];
+		$postobj = get_entities_from_metadata("postid", get_input('postid'), "object", "newsletter");
+		if(is_array($postobj)){
+			$postobj = $postobj[0];
+		}else{
+			return false;
+		}
 		$link = get_metadata_byname($postobj->guid,"permlink")->value;
 		$fid = array();
 		foreach($data as $key=>$user){
