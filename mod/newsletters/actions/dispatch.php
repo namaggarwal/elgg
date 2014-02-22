@@ -6,9 +6,7 @@
 		forward("pg/newsletters/list");
 	}
 
-	//Set the base path
-	$base_path = parse_url($CONFIG->url)["path"];
-
+	
 	//Get the current time
 	$now = time();
 
