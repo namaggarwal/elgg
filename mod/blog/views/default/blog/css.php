@@ -130,7 +130,7 @@
 #blog_edit_page #two_column_left_sidebar_maincontent {
 	margin:0 0px 20px 20px;
 	padding:10px 20px 20px 20px;
-	width:670px;
+	width:660px;
 	background: #bbdaf7;
 }
 /* unsaved blog post preview */

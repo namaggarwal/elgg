@@ -13,7 +13,9 @@
           $advert[$value->guid]["LINK"] = get_metadata_byname($value->guid,"link")->value;
         }
       }
+
     $selectedLink = "http://matthewjamestaylor.com/responsive-ads/ad.html";
+    $newlink = $advert[array_rand($advert)]["LINK"];
     if(!empty($newlink)){
       $selectedLink = $newlink;
     }
@@ -24,9 +26,8 @@
   <div class="clearfloat"></div>
 
   <!--ADVERTISEMENT CODE-->
-  <iframe id="myIframe" style="border:0;" sandbox="allow-same-origin allow-scripts" src=<?php echo $selectedLink ?> height="60" width="100%">
-  </iframe>
-
+    <iframe id="myIframe" style="border:0;" sandbox="allow-same-origin allow-scripts allow-popups" src=<?php echo $selectedLink ?> height="60" width="100%">
+    </iframe>
   <!--END ADVERTISEMENT CODE-->
 <br><br>
   <div id="layout_footer" style="padding-right:50px;">
