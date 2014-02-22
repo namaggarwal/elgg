@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest>
+        <field key="author" value="Ralston" />
+        <field key="version" value="1.6.0" />
+        <field key="description" value="File Tagging" />
+        <field key="elgg_version" value="2009022701" />
+</plugin_manifest>
