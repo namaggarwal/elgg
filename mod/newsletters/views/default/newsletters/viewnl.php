@@ -12,7 +12,7 @@ if(is_array($vars['news']) && count($vars['news'])!=0){
 		$html .= '<div class="subtitle">Body:<br>'.$det->description.'</div>';
 		$html .= '<div class="subtitle"> News Type: &nbsp;&nbsp;'.$det->newstype.'</div>';
 		$html .= '<div class="date"><em>Posted on:</em>&nbsp;&nbsp;'.$det->date.'</div>';		
-		$html .= '<div class="content">POSTID'.$det->postid.'</div>';
+		$html .= '<div class="content">Post ID :'.$det->postid.'</div>';
 		$html .= '</div>';
 	}
 }
