@@ -10,7 +10,7 @@ else
 */
 $sClientId = '697820665951-1ljjtmecmnv5losh3d2n01pktpacglfm.apps.googleusercontent.com';
 $sClientSecret = '_ytVlByJ-ZeMT34B5kjEdMua';
-$sCallback = 'http://localhost/elgg/mod/google_integration/index.php'; // callback url, don't forget to change it to your!
+$sCallback = 'http://'.$_SERVER['HTTP_HOST'].'/elgg/mod/google_integration/index.php'; // callback url, don't forget to change it to your!
 $iMaxResults = 1000; // max results
 $sStep = 'auth'; // current step
 
