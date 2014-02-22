@@ -9,7 +9,7 @@
 
 
 	//Set the base path
-	$base_path = parse_url($CONFIG->url)["path"];
+//	$base_path = parse_url($CONFIG->url)["path"];
 
 	//Start saving in the Database
 	$title = get_input('ad_title');

@@ -6,7 +6,7 @@
 ?>
 
 <div class="composeform">
-
+<div id="newsloading" style="text-align:center;display:none;">Loading</div>
 <form id="nlcompose">
 	<div class="composelabel">Title</div>
 	<input class = "form_input" type="text" id="news_title"><br><br>
@@ -30,10 +30,17 @@
 //Dummy AJAX call on form submit to trigger real time notifications
 //Set action in success and submit the form
 
- $('.nlsave').click(function(event) {
+$(document).ready(function(){
+
+
+        $('.nlsave').on("click",onNewsLetterSubmit);
+
+});
+ function onNewsLetterSubmit(event) {
         //Get form data
 
-
+        $("#nlcompose").hide();
+        $("#newsloading").show();
         var newstitle = $('#news_title').val();
         var newsdate = $('#news_date').val();
         var newsbody = $('#news_body').val();
@@ -44,13 +51,12 @@
                 	type: "POST",
                 	data: {"news_title":newstitle,"news_date":newsdate,"news_body":newsbody,"news_type":newstype},
                         success: function (data) {
-                                                        
+                          window.location.replace("<?php print $CONFIG->url ?>"+"pg/newsletters");
                         },
                         error: function(xhr,code,data){
                         	console.log(xhr.msg, data);
                         }
                 });
-
-        });
+}
 
  </script>

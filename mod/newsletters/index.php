@@ -52,6 +52,64 @@ switch (get_input("action")) {
 						page_draw("Newsletters",$body);
 			}
 		break;
+
+	case 'sendNewsLetter':
+
+
+		$data = get_entities("user","",0,"",100);
+		//sendNotification($user);
+
+		//function sendNotification($data){
+			
+			//set POST variables
+			$url = 'http://localhost:1337/notifyforme';
+			$myid = 2;
+			//$news = get_entity("55");			
+			$message = "New newsletter published";
+			$link = $CONFIG->url."pg/newsletters/".get_input('id');
+			$fid = [];
+			foreach($data as $key=>$user){
+
+				//if(!$user->isAdmin()){
+					array_push($fid, $user->guid);
+				//}
+			}
+
+			$fid= implode(",", $fid);
+
+			$fields = array(
+									'myid' => urlencode($myid),
+									'fid' => urlencode($fid),						
+									'message' => urlencode($message),
+									'link' => urlencode($link),
+
+							);
+			$and = "";
+			//url-ify the data for the POST
+			foreach($fields as $key=>$value) { 
+				$fields_string .= $and.$key.'='.$value; 
+				$and = "&";
+			}
+			rtrim($fields_string,'&');
+
+			//open connection
+			$ch = curl_init();
+
+			//set the url, number of POST vars, POST data
+			curl_setopt($ch,CURLOPT_URL, $url);
+			curl_setopt($ch,CURLOPT_POST, count($fields));
+			curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+
+			//execute post
+			$result = curl_exec($ch);
+
+			//close connection
+			curl_close($ch);
+		
+
+		//}
+				
+		break;	
 	default:
 		
 		break;
