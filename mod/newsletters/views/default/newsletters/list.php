@@ -20,6 +20,7 @@
 			$html .= '<p><b>Posted on:&nbsp;&nbsp;</b>'.date("D, d M Y h:i:s a",$det["DATE"]);
 			$html .= '<br><b>Newsletter type:&nbsp;&nbsp;</b>' .$det["NEWSTYPE"];
 			$html .= '<br><b>Content:&nbsp;&nbsp;</b><br>'.$det["DESC"].'</p>';
+			$html .= '<a href="'.$det["LINK"].'">Link</a>';
 			$html .= '</div>';
 		}
 	 }
