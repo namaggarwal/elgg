@@ -14,10 +14,7 @@
         }
       }
     $selectedLink = "http://matthewjamestaylor.com/responsive-ads/ad.html";
-    $newlink = $advert[array_rand($advert)]["LINK"];
-    print("NEWLINK: ".$newlink);
     if(!empty($newlink)){
-      print("INSIDE!");
       $selectedLink = $newlink;
     }
     print($selectedLink);
