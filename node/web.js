@@ -100,7 +100,7 @@ function handler(req, res) {
     res.end();
 };
 
-var chatConnections = [];
+
 
 var chats = io.of('/chat').on('connection',onChatConnection);
 var notifiers = io.of('/notify').on('connection',onNotifyConnection);
@@ -109,8 +109,8 @@ var chatNotify = io.of('/textmessage').on('connection',onTextConnection);
 function onChatConnection(socket) {
   
   
-  chatConnections[socket.id] = [];
-  chatConnections[socket.id].status = "Connected";
+  
+  
   socket.on("sendMess",function(data){  	
   	socket.broadcast.emit('getMess',{'message':data.message});
   });
@@ -340,8 +340,7 @@ function removeElementFromArr(arr,pos){
 */
 
 function notifyPeople(data){
- try{
-     
+ try{     
      data.fid = data.fid.split(",");     
      for(var i in notifiers["sockets"]){          
           if(data.fid.indexOf(""+notifiers["sockets"][i]["guid"]) != -1){
