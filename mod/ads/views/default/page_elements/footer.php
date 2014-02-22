@@ -17,8 +17,6 @@
     if(!empty($newlink)){
       $selectedLink = $newlink;
     }
-    print($selectedLink);
-
 
   ?>
 
