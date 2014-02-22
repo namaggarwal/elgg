@@ -67,7 +67,7 @@ switch (get_input("action")) {
 			//$news = get_entity("55");			
 			$message = "New newsletter published";
 			$link = $CONFIG->url."pg/newsletters/".get_input('id');
-			$fid = [];
+			$fid = array();
 			foreach($data as $key=>$user){
 
 				//if(!$user->isAdmin()){
