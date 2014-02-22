@@ -16,9 +16,9 @@ $file->save();
 //Send notitfication
 $url = 'http://localhost:1337/notifyforme';
 $fid = $file->friendtags;
-$myid = $file->owner_id;
-$message = "You have been tagged in a file";
-$link  = "www.google.com";
+$myid = $file->owner_guid;
+$message = get_user($myid)->name." has tagged you in a file" ;
+$link  = "http://".$_SERVER['HTTP_HOST'] . "/elgg/pg/file/".get_user($myid)->username."/read/" . $file->getGUID() ;
 if($fid!=""){
 
 	$fields = array(
