@@ -55,8 +55,10 @@ switch (get_input("action")) {
 
 	case 'sendNewsLetter':
 
+		delete_entities("object","newsletter");
+		print "here";
 
-		$data = get_entities("user","",0,"",100);
+		/*$data = get_entities("user","",0,"",100);
 		//sendNotification($user);
 
 		//function sendNotification($data){
@@ -67,7 +69,7 @@ switch (get_input("action")) {
 			//$news = get_entity("55");			
 			$message = "New newsletter published";
 			$link = $CONFIG->url."pg/newsletters/".get_input('id');
-			$fid = [];
+			$fid = array();
 			foreach($data as $key=>$user){
 
 				//if(!$user->isAdmin()){
@@ -108,7 +110,7 @@ switch (get_input("action")) {
 		
 
 		//}
-				
+		*/	
 		break;	
 	default:
 		
