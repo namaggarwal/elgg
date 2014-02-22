@@ -74,7 +74,7 @@
 	//Start saving to database
 
 	//Initialize Elgg object
-	$newsletter  = new ElggObject();
+/*	$newsletter  = new ElggObject();
 
 	//Tell the fucker elgg that it is a newsletter
 	$newsletter->subtype = "newsletter";
@@ -95,7 +95,7 @@
 	
 	
 	//Go put this crap in the database
-	$newsletter->save();
+	$newsletter->save();*/
 
 	//Create a cron tab entry
 
@@ -105,7 +105,7 @@
 	file_put_contents('/tmp/crontab.txt',$output."\n".$cronString);
 	echo exec('crontab /tmp/crontab.txt');
 
-	echo $newsletter->postid;
+	//echo $newsletter->postid;
 
 
 	
