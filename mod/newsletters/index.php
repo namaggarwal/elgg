@@ -55,29 +55,19 @@ switch (get_input("action")) {
 
 	case 'sendNewsLetter':
 
-	/*delete_entities("object","newsletter");
-	print "done";
-	*/
-
-
+	
 		$data = get_entities("user","",0,"",100);
-		//sendNotification($user);
-
-		//function sendNotification($data){
-			
 		//set POST variables
 		$url = 'http://localhost:1337/notifyforme';
-		$myid = 2;
-		//$news = get_entity("55");			
+		$myid = 2;	
 		$message = "New newsletter published";
 		$postobj = get_entities_from_metadata("postid", get_input('postid'), "object", "newsletter")[0];
 		$link = get_metadata_byname($postobj->guid,"permlink")->value;
 		$fid = array();
 		foreach($data as $key=>$user){
-
-			//if(!$user->isAdmin()){
-				array_push($fid, $user->guid);
-			//}
+			
+			array_push($fid, $user->guid);
+			
 		}
 
 		$fid= implode(",", $fid);
@@ -112,8 +102,7 @@ switch (get_input("action")) {
 		curl_close($ch);
 	
 
-		//}
-			
+
 		break;	
 	default:
 		
