@@ -15,7 +15,7 @@
 	 	
 		<?php 	
 		if (isadminloggedin()){
-			$button = elgg_view("input/submit", array("internalname"=>"submitButton", "value"=>elgg_echo("Reset statistics"), "js" => "OnClick='return confirm(\"" . elgg_echo("user_statistics:stats:confirm") . "\");'"));
+			$button = elgg_view("input/submit", array("internalname"=>"submitButton", "value"=>elgg_echo("Reset view statistics"), "js" => "OnClick='return confirm(\"" . elgg_echo("user_statistics:stats:confirm") . "\");'"));
 			$form = elgg_view("input/form", array("internalname" => "resetForm", "method" => "post", "action" => $vars['url'] . "action/user_statistics/reset", "body" => $button));
 		}
 		?>
