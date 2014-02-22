@@ -10,8 +10,9 @@
 					add_submenu_item(elgg_echo('Invite Friends'),$CONFIG->wwwroot."mod/google_integration/",'google');
 			}
 			
-			if(get_context() == "bookmarks" ){
-				add_submenu_item(elgg_echo('Add/View Reminders'),$CONFIG->wwwroot."mod/google_integration/events/",'events');
+			
+			if (isloggedin()) {
+			add_menu(elgg_echo('Events'), $CONFIG->wwwroot . "mod/google_integration/events/");
 			}
 		
 	}

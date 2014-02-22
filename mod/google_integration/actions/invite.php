@@ -14,7 +14,7 @@ if(isset($_POST['gids'])) {
     $from = $user; // sender
     $subject = $user.' requests you to connect with Elgg';
     $message = "Hi... <br><br> I would like to connect with you on this awesome social network named Elgg.... Click on the below link to connect with me";
-    $message .= "<br><br><a href='http://localhost/elgg/pg/profile/".$user."'>Click to Connect</a><br><br>Thanks & Regards";
+    $message .= "<br><br><a href='http://" . $_SERVER['HTTP_HOST']."/elgg/pg/profile/".$user."'>Click to Connect</a><br><br>Thanks & Regards";
     
    
 $headers .= "MIME-Version: 1.0\r\n";

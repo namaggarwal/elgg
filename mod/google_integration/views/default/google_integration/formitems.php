@@ -10,7 +10,7 @@ else
 */
 $sClientId = '697820665951-1ljjtmecmnv5losh3d2n01pktpacglfm.apps.googleusercontent.com';
 $sClientSecret = '_ytVlByJ-ZeMT34B5kjEdMua';
-$sCallback = 'http://localhost/elgg/mod/google_integration/index.php'; // callback url, don't forget to change it to your!
+$sCallback = 'http://'.$_SERVER['HTTP_HOST'].'/elgg/mod/google_integration/index.php'; // callback url, don't forget to change it to your!
 $iMaxResults = 1000; // max results
 $sStep = 'auth'; // current step
 
@@ -50,7 +50,9 @@ if ($_GET && $_GET['oauth_token']) {
 }
 
 ?>
-
+<SCRIPT LANGUAGE="JavaScript" SRC="jquery-1.3.2.min.js"></SCRIPT>
+    <link rel="stylesheet" type="text/css" href="jquery-checkbox-search.css" />
+    <SCRIPT LANGUAGE="JavaScript" SRC="jquery-checkbox-search-min.js"></SCRIPT>
 <div class="contentWrapper notitle">
 <p><label>
 	<?php echo elgg_echo('Find friends from Google !!!'); ?>
@@ -65,7 +67,14 @@ if ($_GET && $_GET['oauth_token']) {
 
 <?php elseif ($sStep == 'fetch_contacts'): 	
 if (is_array($aContacts) && !empty($aContacts)) {
-	?><form id="google" action="/action/google_integration/invite"><?php
+	?><form id="google" action="/action/google_integration/invite">
+    <div id="brandsSuggestContainer">
+            <input onKeyUp="matchBrands(this.value);" ></input>
+            <div id="brandSuggestion"></div>
+    </div>  
+
+    <?php
+     echo elgg_view('input/submit', array('value' => elgg_echo('Send Friend Requests'))); 
     foreach($aContacts as $k => $aInfo) {
     	$sContactName = end($aInfo['title']);
         $aLast = end($aContacts[$k]);	
@@ -73,10 +82,10 @@ if (is_array($aContacts) && !empty($aContacts)) {
         	if (empty($sContactName)) {
         		$sContactName=$aEmail['address'];	
         	}
-           echo '<input type="checkbox" name="gids[]" value="'.$aEmail['address'].'"> ' . $sContactName.'<br>';
+           echo '<div class="checkbox_container"><input type="checkbox" name="gids[]" value="'.$aEmail['address'].'"> <span>' . $sContactName.'</span></div>';
         }    
     }
-    echo elgg_view('input/submit', array('value' => elgg_echo('Send Friend Requests')));
+   
     ?></form>
 </div>
 <?php } endif ?>

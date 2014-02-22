@@ -92,14 +92,17 @@
 	text-shadow:1px 1px 0px #528ecc;
 	margin-left: 2%;
 }
-.createnlbutton:hover {
+
+.createnlbutton:hover, .nlsave:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
 	background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
 	background-color:#378de5;
 	text-decoration:none;
 	color: white;
-}.createnlbutton:active {
+}
+
+.createnlbutton:active, .nlsave:active {
 	position:relative;
 	top:1px;
 }
@@ -121,4 +124,11 @@ form {
 	form-size: 100%;
 	margin-left: 5%;
 	padding-top: 5%;
+}
+
+.errorString{
+	color: red;
+	display: inline-block;
+	padding-left: 10px;
+	font-style: italic;
 }
