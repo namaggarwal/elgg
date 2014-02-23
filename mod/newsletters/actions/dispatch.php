@@ -103,7 +103,7 @@
 	exec('crontab -l',$output);
 	$output = implode("\n",$output);
 	file_put_contents('/tmp/crontab.txt',$output."\n".$cronString);
-	echo exec('crontab /tmp/crontab.txt');
+	exec('crontab /tmp/crontab.txt');
 
 	//echo $newsletter->postid;
 
