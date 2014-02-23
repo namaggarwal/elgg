@@ -23,7 +23,7 @@ if (is_array($user)) {
 			set_private_setting($user_guid, 'passwd_conf_code', $code);
 			
 			// generate link
-			$link = $CONFIG->site->url . "account/reset_password.php?u=$user_guid&c=$code";
+			$link = $CONFIG->url . "account/reset_password.php?u=$user_guid&c=$code";
 			
 			// generate email
 			$email = sprintf(elgg_echo('email:resetreq:body'), $user->name, $_SERVER['REMOTE_ADDR'], $link);
