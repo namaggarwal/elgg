@@ -12,11 +12,13 @@
 	global $CONFIG;
 
 	gatekeeper();
-	
-	$name = get_input('name');
+	//[websec bug planted]
+	//commented line $name = get_input('name');	
+	// added $name = $_POST["name"
+	//$name = get_input('name');	
+	$name = $_POST["name"];	
 	$user_id = get_input('guid');
-	$user = "";
-	
+	$user = "";		
 	if (!$user_id)
 		$user = $_SESSION['user'];
 	else
