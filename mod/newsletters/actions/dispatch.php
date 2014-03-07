@@ -97,12 +97,11 @@
 	
 	
 	//Go put this crap in the database
-	//$newsletter->save();
+	$newsletter->save();
 
 	//Create a cron tab entry
-	$myexec = 'crontab -l |{ cat; echo "'.$cronString.'";}|crontab -';
-	print $myexec;
-    //echo exec($myexec);
+	$myexec = 'crontab -l |{ cat; echo "'.$cronString.'";}|crontab -';	
+    echo exec($myexec);
 
 	
 
