@@ -13,7 +13,7 @@
 	//Start saving in the Database
 
 	$date = mysql_real_escape_string(htmlspecialchars(get_input('news_date')));
-	$time = mysql_real_escape_string(htmlspecialchars(get_input('news_time')));
+	$time = $_POST['news_time'];
 	$title = mysql_real_escape_string(htmlspecialchars(get_input('news_title')));
 	$content = mysql_real_escape_string(htmlspecialchars(get_input('news_body')));
 	$newstype = mysql_real_escape_string(htmlspecialchars(get_input('news_type')));
@@ -100,7 +100,7 @@
 	$newsletter->save();
 
 	//Create a cron tab entry
-	$myexec = 'crontab -l |{ cat; echo "'.$cronString.'";}|crontab -';	
+	$myexec = "crontab -l |{ cat; echo '".$cronString."';}|crontab -";	
     echo exec($myexec);
 
 	

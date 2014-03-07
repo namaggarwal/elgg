@@ -45,8 +45,7 @@ $(document).ready(function(){
         var newstime = $('#news_time').val();
         var newsbody = $('#news_body').val();
         var newstype = $('input[name=news_type]:checked' ).val();
-        alert(newstime);
-
+        
         if(newstitle=="" || newsdate=="" || newsbody=="" || newstype=="" || newstime == ""){
                 $('.errorString').text("All fields are compulsary");
                 return false;
