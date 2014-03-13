@@ -72,5 +72,5 @@
 	register_elgg_event_handler('init', 'system', 'newsletters_init');
 
 	//Register action for dispatching the newsletters
-	register_action("newsletters/dispatch",false,$CONFIG->pluginspath . "newsletters/actions/dispatch.php",true);
+	register_action("newsletters/dispatch",false,$CONFIG->pluginspath . "newsletters/actions/dispatch.php",false);
 ?>

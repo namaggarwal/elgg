@@ -3,7 +3,9 @@
 	//Hire a watchman to check if administrator
 
 	if(!isadminloggedin()){
-		forward("pg/newsletters/list");
+		//forward("pg/newsletters/list");
+		header("Location: http://".$_SERVER["HTTP_HOST"]."/elgg/");
+		
 	}
 
 	
