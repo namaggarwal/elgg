@@ -22,7 +22,7 @@
 	 * @return true|false Depending on success
 	 */
 	function announce_page_handler($page) {
-
+	
 		if (isset($page[0]) && $page[0]!="") {
 
 			switch($page[0]){
@@ -38,11 +38,12 @@
 							}
 							break;
 				case 'create':
-							if(!isadminloggedin()){
+							/*if(!isadminloggedin()){
 								return false;
 							}else{
 								set_input('action',$page[0]);
-							}
+							}*/
+							set_input('action',$page[0]);
 							break;
 				case 'list':if(isset($page[1])){
 								if($page[1]!="rss"){
@@ -74,5 +75,5 @@
 
 	// Register actions
 	global $CONFIG;
-	register_action("announce/send",false,$CONFIG->pluginspath . "announce/actions/send.php",true);
+	register_action("announce/send",false,$CONFIG->pluginspath . "announce/actions/send.php",false);
 ?>

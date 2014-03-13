@@ -2,7 +2,8 @@
 
 	gatekeeper();
 
-	$guid = hash("md5",get_loggedin_user()->guid);
+	//$guid = hash("md5",get_loggedin_user()->guid);
+	$guid = get_loggedin_user()->guid;
 
 	$name = get_loggedin_user()->name;
 	$html ="";	
@@ -67,6 +68,7 @@ STR;
 
 						   // errorCallback
 						   function(err) {
+						   	console.log(err);
 						    alert("The following error occured: " + err);
 						   }
 
@@ -110,6 +112,7 @@ break;
 
 						   // errorCallback
 						   function(err) {
+						   	console.log(err);
 						    alert("The following error occured: " + err);
 						   }
 

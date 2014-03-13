@@ -1,9 +1,11 @@
 <?php
 	gatekeeper();
 
-	$guid = hash('md5',get_loggedin_user()->guid);
+	//$guid = hash('md5',get_loggedin_user()->guid);
+	$guid = get_loggedin_user()->guid;
 	$name = get_loggedin_user()->name;	
-	$room_name   = "elgg_".$guid.time();
+	//$room_name   = "elgg_".$guid.time();
+	$room_name   = "elgg_".$guid;
 	$link  = $CONFIG->url."pg/voice/join/".$room_name;	
 	$html  =  '';
 	$html .= '<div id="voice_input_cont">';
@@ -16,7 +18,8 @@
 	foreach($vars['friends'] as $friend){ 
 		//populate the send to box with a user's friends
 		//$html .= '<div value="'.$friend->guid.'">' . $friend->name . '</div>';
-		$html .= '<div class="voice_f_name" data-value="'.hash('md5',$friend->guid).'">'.$friend->name .'</div>';
+		//$html .= '<div class="voice_f_name" data-value="'.hash('md5',$friend->guid).'">'.$friend->name .'</div>';
+		$html .= '<div class="voice_f_name" data-value="'.$friend->guid.'">'.$friend->name .'</div>';
 		
 	}
 	$html .= '</div>';
