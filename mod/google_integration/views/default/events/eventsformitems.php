@@ -15,7 +15,7 @@ else if(isset($_GET['url'])){
 	<?php echo elgg_echo('Add an Event'); ?>
 </label></p>	
 	
-	<form id="events" action="#" id="idForm">
+	<form action="/elgg/action/google_integration/add" id="idForm" method="POST">
 		<table border=0>
 		<tr><td>Event Name<font color=red>*</font>    :</td><td> <input type="text" name="ename" required="true"/></td></tr>
 		<tr><td>Event Start Date<font color=red>*</font>       : </td><td><input type="date" name="esdate" required="true"/></td></tr>
@@ -31,23 +31,7 @@ else if(isset($_GET['url'])){
 	<button type="submit" class="submit_button" value="Add Event"/>Add Event</button>
 	</form>
 
-	<script type="text/javascript">
-  	$("#idForm").submit(function() {
-  		$.ajax({
-      		url:'/elgg/action/google_integration/add',
-      		type:'POST',
-      		data: $("#idForm").serialize(),
-      		success:function(data){
-      			window.open(data,"_self");
-      		},
-      		error:function(err,code,data){
-        		console.log(err,code,data);
-      		}
-    	});
-
-  	});
-
-</script>
+	
 </div>
 
 <div class="contentWrapper notitle">
