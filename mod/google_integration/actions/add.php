@@ -149,7 +149,7 @@ if(isset($_POST['ck']) || isset($_SESSION['ck'])){
         forward($_SERVER['HTTP_REFERER'].'mod/google_integration/events/');
        }else {
              $authUrl = $client->createAuthUrl();
-             forward($_SERVER['HTTP_REFERER'].'?url='.base64_encode($authUrl));
+             forward($_SERVER['HTTP_REFERER'].'?url='.urlencode($authUrl));
             
         } 
     

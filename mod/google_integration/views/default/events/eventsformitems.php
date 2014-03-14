@@ -7,7 +7,7 @@ if(isset($_GET['code']))
 	header('Location: http://'. $_SERVER['HTTP_HOST'].'/elgg/mod/google_integration/actions/add.php?code='.$_GET['code']);
 else if(isset($_GET['url'])){
 	//header('Location: '.$_GET['authUrl'].'&redirect_uri='.$_GET['redirect_uri'].'&client_id='.$_GET['client_id'].'&scope='.$_GET['scope'].'&access_type='.$_GET['access_type'].'&approval_prompt='.$_GET['approval_prompt']);
-	header('Location: '. base64_decode($_GET['url']));
+	header('Location: '. $_GET['url']);
 }
 ?>
 <div class="contentWrapper notitle">
