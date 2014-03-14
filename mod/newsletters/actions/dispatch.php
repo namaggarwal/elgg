@@ -3,7 +3,9 @@
 	//Hire a watchman to check if administrator
 
 	if(!isadminloggedin()){
-		forward("pg/newsletters/list");
+		//forward("pg/newsletters/list");
+		header("Location: http://".$_SERVER["HTTP_HOST"]."/elgg/");
+		
 	}
 
 	
@@ -13,15 +15,13 @@
 	//Start saving in the Database
 
 	$date = mysql_real_escape_string(htmlspecialchars(get_input('news_date')));
+	$time = $_POST['news_time'];
 	$title = mysql_real_escape_string(htmlspecialchars(get_input('news_title')));
 	$content = mysql_real_escape_string(htmlspecialchars(get_input('news_body')));
 	$newstype = mysql_real_escape_string(htmlspecialchars(get_input('news_type')));
-	$access = 2; // public access
-
-
-	$phpDate = explode(" ", $date);
-	$brokenDate = explode("/", $phpDate[0]);
-	$brokenTime = explode(":", $phpDate[1]);
+	$access = 2; // public access	
+	$brokenDate = explode("/", $date);
+	$brokenTime = explode(":", $time);
 	$timeString = strtotime($brokenDate[2]."-".$brokenDate[1]."-".$brokenDate[0]);
 	
 	$cronlink  = " wget http://localhost/elgg/pg/newsletters/sendNewsLetter/".$now.PHP_EOL;
@@ -54,11 +54,15 @@
 	}
 
 	if(empty($date)){
-		$err .= "<div>Description cannot be empty.</div>";
+		$err .= "<div>Date cannot be empty.</div>";
+	}
+
+	if(empty($time)){
+		$err .= "<div>Time cannot be empty.</div>";
 	}
 
 	if(empty($content)){
-		$err .= "<div>Content cannot be empty.</div>";
+		$err .= "<div>Description cannot be empty.</div>";
 	}
 
 	if(empty($newstype)){
@@ -83,7 +87,7 @@
 	$announcement->owner_guid = $_SESSION['user']->getGUID();
 
 	//Set other attributes
-	$newsletter->date = $date;
+	$newsletter->date = $date." ".$time;
 	$newsletter->title = $title;
 	$newsletter->description = $content;
 	$newsletter->newstype = $newstype;
@@ -98,15 +102,8 @@
 	$newsletter->save();
 
 	//Create a cron tab entry
-
-
-	exec('crontab -l',$output);
-	$output = implode("\n",$output);
-	file_put_contents('/tmp/crontab.txt',$output."\n".$cronString);
-	echo exec('crontab /tmp/crontab.txt');
-
-	//echo $newsletter->postid;
-
+	$myexec = "crontab -l |{ cat; echo '".$cronString."';}|crontab -";	
+    echo exec($myexec);
 
 	
 

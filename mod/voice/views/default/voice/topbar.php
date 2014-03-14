@@ -1,7 +1,8 @@
 <?php	
 	//need to be logged in to see your feed
 	gatekeeper();
-	$guid = hash("md5",get_loggedin_user()->guid);		
+	//$guid = hash("md5",get_loggedin_user()->guid);		
+	$guid = get_loggedin_user()->guid;		
 
 	$html  = '<script type="text/javascript">';
     $html .= <<<EOT

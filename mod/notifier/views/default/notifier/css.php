@@ -11,11 +11,12 @@
 
 div.notification{
 	width: 200px;
-	background: #e6f3fe;
-	padding: 10px;
-	border: 2px solid #AAA;
+	background: #8ec8fa;
+	padding: 20px;
+	border: 2px solid #001801;
 	position:relative;
 	margin-bottom:1px;
+	font-weight:bold;
 	display:none;
 }
 

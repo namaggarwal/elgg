@@ -46,7 +46,8 @@
 								set_input('perid',$page[3]);
 								set_input('room',$page[1]);
 								set_input('actype',$page[4]);
-								$guid = hash("md5",get_loggedin_user()->guid);
+								//$guid = hash("md5",get_loggedin_user()->guid);
+								$guid = get_loggedin_user()->guid;
 								if($page[2] != $guid){
 									return false;
 								}

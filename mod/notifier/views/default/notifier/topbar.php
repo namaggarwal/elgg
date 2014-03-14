@@ -13,7 +13,7 @@
 			options = {};
 
 		// Set delay -1 to let it remain
-		options.delay = 6000;		
+		options.delay = 20000;
 		options.onNewNotification = function(data){
 
 			if(data.callback){
