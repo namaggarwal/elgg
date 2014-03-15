@@ -1,6 +1,8 @@
 <?php
 	
 	gatekeeper();	
+	$code=get_loggedin_user()->guid."_".$_SERVER['REMOTE_ADDR'];
+	
 ?>
 <div id="ann-form-cont">
 	<form action="<?php echo $vars['url']; ?>action/announce/send" method="post"  name="announceForm">
@@ -22,6 +24,7 @@
 				<textarea id="ann-content" name="ann_content"></textarea>
 			</div>
 		</div>
+		<input type="hidden" name="_elggToken" value="<?php echo base64_encode($code); ?>"></input>
 		<input type="submit" value="Announce"></input>
 	</form>
 </div>
