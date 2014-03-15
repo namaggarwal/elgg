@@ -115,6 +115,7 @@
 					echo "<input type=\"hidden\" name=\"file_guid\" value=\"{$vars['entity']->getGUID()}\" />";
 			
 			?>
+			<?php echo elgg_view('input/securitytoken'); ?>
 			<input type="submit" value="<?php echo elgg_echo("save"); ?>" />
 		</p>
 
