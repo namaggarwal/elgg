@@ -11,6 +11,7 @@
 	global $CONFIG;
 	
 	gatekeeper();
+	action_gatekeeper();
 	
 	// Get variables
 	$title = get_input("title");
