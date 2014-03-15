@@ -36,6 +36,7 @@ function textCounter(field,cntfield,maxlimit) {
                 echo $display;
                 echo elgg_echo("thewire:charleft") . "</div>";
 			?>
+			<?php echo elgg_view('input/securitytoken'); ?>
 			<input type="hidden" name="method" value="site" />
 			<input type="submit" value="<?php echo elgg_echo('save'); ?>" />
 	</form>
