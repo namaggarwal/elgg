@@ -21,7 +21,8 @@
 
 					$err = false;
 
-					$link = mysqli_connect("localhost","naman","IAMTHEBEST","elgg");
+					//$link = mysqli_connect("localhost","naman","IAMTHEBEST","elgg");
+					$link = mysqli_connect("localhost","root","root","elgg");
 
 					$query = "  select 
 								entity.guid
