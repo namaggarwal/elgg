@@ -20,7 +20,7 @@
 	    <input type="radio" id="news_type" name="news_type" value="Weekly">Weekly  
         <input type="radio" id="news_type" name="news_type" value="Monthy">Monthly
         <input type="radio" id="news_type" name="news_type" value="Yearly">Yearly<br><br>
-
+        <?php echo elgg_view('input/securitytoken'); ?>
 	<input type="button" value="Send" class="nlsave"/> <div class="errorString"></div>
 </form>
 </div>
