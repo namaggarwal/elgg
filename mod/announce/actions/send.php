@@ -8,7 +8,14 @@
 	$title = get_input("ann_title");
 	$desc = get_input("ann_desc");
 	$content = get_input("ann_content");
+	$code=get_input("_elggToken");
+	$dummy=base64_decode($code);
+	$q=explode('_', $dummy);
 
+	
+	if(($q[0]==$myguid)&&($q[1]==$_SERVER['REMOTE_ADDR']))
+	{
+		
 	//save for the future
 	$_SERVER["ann_title"] = $title;
 	$_SERVER["ann_desc"] = $desc;
@@ -16,6 +23,7 @@
 
 
 	$err;
+
 
 	if(empty($title)){
 
@@ -70,6 +78,12 @@
 	system_message("Announcement has been successfully posted.");
 	forward("pg/announce/list");
 
+}
+else
+{
+
+	register_error("Bad token");
+}
 
 
 ?>
