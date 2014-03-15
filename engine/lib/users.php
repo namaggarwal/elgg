@@ -1170,8 +1170,8 @@
 	 */
 	function validate_password($password)
 	{
-		if (strlen($password)<6) throw new RegistrationException(elgg_echo('registration:passwordtooshort'));
-			
+		if(preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/",$password)!=1)
+			throw new RegistrationException(elgg_echo('Password should contain minimum 8 characters with altleast one small case, one capital case, one number and a special character. Special characters allowed are @#$%^&+='));	
 		$result = true;
 		return trigger_plugin_hook('registeruser:validate:password', 'all', array('password' => $password), $result);
 	}

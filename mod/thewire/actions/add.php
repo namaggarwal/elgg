@@ -1,5 +1,6 @@
 <?php
-
+gatekeeper();
+action_gatekeeper();
 	/**
 	 * Elgg thewire: add shout action
 	 * 
