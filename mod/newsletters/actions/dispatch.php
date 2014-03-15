@@ -1,6 +1,6 @@
 <?php
 gatekeeper();
-action_gatekeeper();
+//action_gatekeeper();
 	//Hire a watchman to check if administrator
 
 	if(!isadminloggedin()){
