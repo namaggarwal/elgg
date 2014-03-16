@@ -19,7 +19,9 @@
 		set_context('search');
 		
 	// Get input
-		$tag = stripslashes(get_input('tag'));
+		//$tag = stripslashes(get_input('tag'));
+		$data_to_filter = get_input('tag');
+		$tag = preg_replace('#<script(.*?)>(.*?)</script>#is', '*#', $data_to_filter);
 		$subtype = stripslashes(get_input('subtype'));
 		if (!$objecttype = stripslashes(get_input('object'))) {
 			$objecttype = "";
