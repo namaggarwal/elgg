@@ -48,12 +48,11 @@
 </div>
 <br><br><br>
 	<div style="display:none" class="adpreviewtext">ADVERTISEMENT PREVIEW</div>
- 	<iframe style="display:none" style="border:0;" id="ad-iframe" sandbox="allow-same-origin allow-scripts" seamless src="#"  height="60" width="100%">
+ 	<iframe style="display:none" style="border:0;" id="ad-iframe" src="#"  height="60" width="100%">
  </iframe>
 
-<script type="text/javascript">
-
-
+<script type="text/javascript">	
+	
 	$('.ad-title').on("keyup", function(){
 		$('.titlepreview').text($('.ad-title').val());
 	});
@@ -86,6 +85,20 @@
 		$('#ad-iframe').show();
 		$('.submit-btn').show();
 		$('#ad-iframe').attr("src",$(".ad-link").val());
+
+		var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+  		var eventer = window[eventMethod];
+	  	var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+  		url = $('.ad-link').val();
+  		var TARGET_ORIGIN = url.match(/^http:\/\/[^/]+/);
+  		  cookie= document.cookie;
+  		// Listen to message from child window
+  		eventer(messageEvent,function(e) {
+    		iframe = document.getElementById('ad-iframe');
+    		iframe.contentWindow.postMessage(cookie,
+		      TARGET_ORIGIN);
+  		},false);
 	});
 
 </script>
